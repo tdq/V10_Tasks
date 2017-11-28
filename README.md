@@ -2,7 +2,7 @@
 
 # PWA Tasks application based on Vaadin 10
 
-It allows to create tasks, share them and make discossion in each task.
+It allows to create tasks, share them and make discussion in each task.
 
 Run using `mvn jetty:run` and open [http://localhost:8080](http://localhost:8080) in browser.
 
