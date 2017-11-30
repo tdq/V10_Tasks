@@ -1,0 +1,17 @@
+<link rel="import" href="./bower_components/polymer/polymer.html">
+
+<dom-module id="tasks-view">
+    <template>
+        <span>Tasks</span>
+    </template>
+
+    <script>
+        class TasksView extends Polymer.Element {
+            static get is() {
+                return 'tasks-view';
+            }
+        }
+
+        customElements.define(TasksView.is, TasksView);
+    </script>
+</dom-module>
