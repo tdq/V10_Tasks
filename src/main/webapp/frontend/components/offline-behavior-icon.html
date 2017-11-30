@@ -1,0 +1,39 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/app-storage/app-network-status-behavior.html">
+
+<dom-module id="offline-behavior-icon">
+    <template>
+        <iron-icon icon="[[status]]"></iron-icon>
+    </template>
+
+    <script>
+        class OfflineBehaviorIcon extends Polymer.mixinBehaviors([Polymer.AppNetworkStatusBehavior], Polymer.Element) {
+            static get is() { return 'offline-behavior-icon'; }
+
+            ready() {
+                super.ready();
+                this._setStatus();
+            }
+
+            connectedCallback() {
+                super.connectedCallback();
+
+                this._checker = setInterval(function() {this._setStatus();}.bind(this), 1000);
+            }
+
+            disconnectedCallback() {
+                this.disconnectedCallback();
+
+                clearInterval(this._checker);
+            }
+
+            _setStatus() {
+                this.status = this.online ? 'cloud' : 'cloud-off';
+            }
+        }
+
+        window.customElements.define(OfflineBehaviorIcon.is, OfflineBehaviorIcon);
+    </script>
+</dom-module>

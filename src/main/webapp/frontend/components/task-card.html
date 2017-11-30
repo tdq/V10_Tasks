@@ -1,0 +1,31 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="./component-styles.html">
+
+<dom-module id="task-card">
+    <template>
+        <style include="shared-styles">
+        </style>
+
+        <div class="card">
+            <div class="circle">[[task.author]]</div>
+            <span>[[task.date]]</span>
+            <h1>[[task.name]]</h1>
+            <p>[[task.desc]]</p>
+        </div>
+    </template>
+
+    <script>
+        class TaskCard extends Polymer.Element {
+            static get is() { return 'task-card'; }
+            static get properties() {
+                return {
+                    task: {
+                        type: Object,
+                        value: () => { }
+                    }
+                }
+            }
+        }
+        window.customElements.define(TaskCard.is, TaskCard);
+    </script>
+</dom-module>
