@@ -9,7 +9,7 @@ import com.vaadin.ui.polymertemplate.PolymerTemplate;
 import com.tdq.tasks.MainLayout;
 
 @Tag("settings-view")
-@HtmlImport("SettingsView.html")
+@HtmlImport("views/settings-view.html")
 @Route(value="settings", layout=MainLayout.class)
 public class SettingsView extends PolymerTemplate<TemplateModel> {
 

@@ -1,6 +1,7 @@
 package com.tdq.tasks.model;
 
-import java.time.Instant;
+import java.lang.reflect.Type;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -10,19 +11,19 @@ import java.util.UUID;
  * @author Nikolay Gorokhov
  */
 public class TaskDto {
-    private UUID id;
+    private String id;
     private String author;
-    private Instant date;
+    private String date;
     private String name;
     private String description;
     private List<String> options;
-    private Type type; 
+    private String type; 
     
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -34,11 +35,11 @@ public class TaskDto {
         return author;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Instant getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -66,11 +67,11 @@ public class TaskDto {
         return options;
     }
 
-    public void setType(Type type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
     }
     

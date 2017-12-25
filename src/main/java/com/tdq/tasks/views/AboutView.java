@@ -9,7 +9,7 @@ import com.vaadin.ui.polymertemplate.PolymerTemplate;
 import com.tdq.tasks.MainLayout;
 
 @Tag("about-view")
-@HtmlImport("AboutView.html")
+@HtmlImport("views/about-view.html")
 @Route(value="about", layout=MainLayout.class)
 public class AboutView extends PolymerTemplate<TemplateModel> {
 

@@ -3,27 +3,26 @@ package com.tdq.tasks;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.model.TemplateModel;
 import com.vaadin.router.Route;
+import com.vaadin.router.RouterLayout;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Tag;
 import com.vaadin.ui.common.HtmlImport;
 import com.vaadin.ui.polymertemplate.PolymerTemplate;
 
-import com.vaadin.flow.demo.helloworld.ExampleTemplate;
-
-
-
 @Tag("main-layout")
-@HtmlImport("MainLayout.html")
+@HtmlImport("views/main-layout.html")
 @Route("")
-public class MainLayout extends PolymerTemplate<TemplateModel> {
+public class MainLayout extends PolymerTemplate<TemplateModel> implements RouterLayout {
 
     private Element content;
 
     public MainLayout() {
+        /*
         ExampleTemplate template = new ExampleTemplate();
         template.setValue("Template!!!");
 
         setContent(template);
+        */
     }
 
     /**

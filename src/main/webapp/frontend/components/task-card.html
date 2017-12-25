@@ -7,7 +7,7 @@
         </style>
 
         <div class="card">
-            <div class="circle">[[task.author]]</div>
+            <div class="circle">[[tasks.author]]</div>
             <span>[[task.date]]</span>
             <h1>[[task.name]]</h1>
             <p>[[task.desc]]</p>
@@ -17,14 +17,6 @@
     <script>
         class TaskCard extends Polymer.Element {
             static get is() { return 'task-card'; }
-            static get properties() {
-                return {
-                    task: {
-                        type: Object,
-                        value: () => { }
-                    }
-                }
-            }
         }
         window.customElements.define(TaskCard.is, TaskCard);
     </script>

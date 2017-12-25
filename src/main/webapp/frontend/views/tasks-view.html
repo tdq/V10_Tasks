@@ -1,14 +1,23 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../components/task-card.html">
 
 <dom-module id="tasks-view">
     <template>
         <span>Tasks</span>
+        <slot></slot>
+
+        <paper-fab label="+" class="add-task" on-tap="_newTask"></paper-fab>
     </template>
 
     <script>
         class TasksView extends Polymer.Element {
             static get is() {
                 return 'tasks-view';
+            }
+
+            _newTask() {
+            
             }
         }
 
