@@ -11,19 +11,19 @@ import java.util.UUID;
  * @author Nikolay Gorokhov
  */
 public class TaskDto {
-    private String id;
+    private UUID id;
     private String author;
     private String date;
     private String name;
     private String description;
     private List<String> options;
-    private String type; 
+    private Type type; 
     
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -67,11 +67,11 @@ public class TaskDto {
         return options;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
     

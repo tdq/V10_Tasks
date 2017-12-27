@@ -7,16 +7,36 @@
         </style>
 
         <div class="card">
-            <div class="circle">[[tasks.author]]</div>
-            <span>[[task.date]]</span>
-            <h1>[[task.name]]</h1>
-            <p>[[task.desc]]</p>
+            <div class="circle">[[author]]</div>
+            <span>[[date]]</span>
+            <h1>[[name]]</h1>
+            <template is="dom-if" if="{{_equals(type, 'TEXT')}}">
+                <p>[[desc]]</p>
+            </template>
+
+            <template is="dom-if" if="{{_equals(type, 'OPTIONS')}}">
+                <div>Options</div>
+                <template is="dom-repeat" items="[[options]]">
+                    <input type="checkbox">[[item]]</input>
+                </template>
+            </template>
+
+            <template is="dom-if" if="{{_equals(type, 'LIST')}}">
+                <div>List</div>
+                <template is="dom-repeat" items="[[options]]">
+                    <div>[[item]]</div>
+                </template>
+            </template>
         </div>
     </template>
 
     <script>
         class TaskCard extends Polymer.Element {
             static get is() { return 'task-card'; }
+
+            _equals(type, value) {
+                return type === value;
+            }
         }
         window.customElements.define(TaskCard.is, TaskCard);
     </script>

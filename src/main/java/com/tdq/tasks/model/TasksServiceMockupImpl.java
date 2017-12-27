@@ -23,8 +23,8 @@ public class TasksServiceMockupImpl implements TasksService {
 
     private TasksServiceMockupImpl() {
         TaskDto task1 = new TaskDto();
-        task1.setType(TaskDto.Type.LIST.name());
-        task1.setId(UUID.randomUUID().toString());
+        task1.setType(TaskDto.Type.OPTIONS);
+        task1.setId(UUID.randomUUID());
         task1.setDate(LocalDateTime.now().minusDays(3).toString());
         task1.setName("Task 1");
         task1.setAuthor("Nikolay");
@@ -48,7 +48,7 @@ public class TasksServiceMockupImpl implements TasksService {
         Objects.requireNonNull(task);
 
         if(task.getId() == null) {
-            task.setId(UUID.randomUUID().toString());
+            task.setId(UUID.randomUUID());
             tasks.add(task);
         }
     }

@@ -4,9 +4,11 @@ import com.vaadin.flow.model.TemplateModel;
 import com.vaadin.ui.Tag;
 import com.vaadin.ui.common.HtmlImport;
 import com.vaadin.ui.polymertemplate.PolymerTemplate;
-import javax.validation.constraints.NotNull;
 
+import java.util.List;
 import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
 
 import com.tdq.tasks.model.TaskDto;
 
@@ -15,12 +17,21 @@ import com.tdq.tasks.model.TaskDto;
 public class TaskCard extends PolymerTemplate<TaskCard.TaskCardModel> {
 
     public interface TaskCardModel extends TemplateModel {
-        void setTask(TaskDto task);
-
-        TaskDto getTask();
+        void setAuthor(String author);
+        void setDate(String date);
+        void setName(String name);
+        void setDesc(String description);
+        void setType(String type);
+        void setOptions(List<String> options);
     }
 
     public TaskCard(@NotNull TaskDto dto) {
-        getModel().setTask(Objects.requireNonNull(dto));
+        Objects.requireNonNull(dto);
+        getModel().setAuthor(dto.getAuthor());
+        getModel().setDate(dto.getDate());
+        getModel().setName(dto.getName());
+        getModel().setDesc(dto.getDescription());
+        getModel().setType(dto.getType().name());
+        getModel().setOptions(dto.getOptions());
     }
 }
