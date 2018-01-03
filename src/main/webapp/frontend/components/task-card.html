@@ -1,30 +1,59 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="./component-styles.html">
 
 <dom-module id="task-card">
     <template>
         <style include="shared-styles">
+
+            .task-name {
+                display: block;
+                border: none;
+                font-size: 16px;
+            }
+
+            .task-description {
+
+            }
+
+            .task-option {
+                display: block;
+            }
+
+            .task-option input[type="text"] {
+                border: none;
+            }
+
+            .task-option input[type="checkbox"]:checked ~ input[type="text"] {
+                text-decoration: line-through;
+            }
+
+            .task-list-item {
+                
+            }
+
         </style>
 
         <div class="card">
             <div class="circle">[[author]]</div>
             <span>[[date]]</span>
-            <h1>[[name]]</h1>
+            <input class="task-name"  placeholder="Task name" value="{{name}}"></input>
             <template is="dom-if" if="{{_equals(type, 'TEXT')}}">
-                <p>[[desc]]</p>
+                <textarea class="task-description">[[desc]]</textarea>
             </template>
 
             <template is="dom-if" if="{{_equals(type, 'OPTIONS')}}">
-                <div>Options</div>
                 <template is="dom-repeat" items="[[options]]">
-                    <input type="checkbox">[[item]]</input>
+                    <div class="task-option">
+                        <input type="checkbox"></input>
+                        <input type="text" value="{{item}}"></input>
+                    </div>
                 </template>
             </template>
 
             <template is="dom-if" if="{{_equals(type, 'LIST')}}">
-                <div>List</div>
                 <template is="dom-repeat" items="[[options]]">
-                    <div>[[item]]</div>
+                    <input class="task-list-item" type="text" value="{{item}}"></input>
                 </template>
             </template>
         </div>

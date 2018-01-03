@@ -23,6 +23,13 @@ public class TaskCard extends PolymerTemplate<TaskCard.TaskCardModel> {
         void setDesc(String description);
         void setType(String type);
         void setOptions(List<String> options);
+
+        String getAuthor();
+        String getDate();
+        String getName();
+        String getDescription();
+        String getType();
+        List<String> getOptions();
     }
 
     public TaskCard(@NotNull TaskDto dto) {
