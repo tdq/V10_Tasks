@@ -1,8 +1,6 @@
 package com.tdq.tasks.model;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,9 +17,8 @@ import javax.validation.constraints.NotNull;
 public class TasksServiceMockupImpl implements TasksService {
    
     private final List<TaskDto> tasks = new LinkedList<>();
-    private static TasksServiceMockupImpl instance = new TasksServiceMockupImpl();
 
-    private TasksServiceMockupImpl() {
+    public TasksServiceMockupImpl() {
         TaskDto task1 = new TaskDto();
         task1.setType(TaskDto.Type.OPTIONS);
         task1.setId(UUID.randomUUID());
@@ -32,10 +29,8 @@ public class TasksServiceMockupImpl implements TasksService {
         task1.setDescription("Description of task 1");
 
         tasks.add(task1);
-    }
 
-    public static TasksServiceMockupImpl getInstance() {
-        return instance;
+        System.err.println("TasksServiceMockupImpl initialized");
     }
 
     @Override

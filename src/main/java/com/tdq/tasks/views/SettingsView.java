@@ -9,6 +9,7 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import com.tdq.tasks.MainLayout;
 

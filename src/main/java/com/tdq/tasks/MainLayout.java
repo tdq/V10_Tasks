@@ -17,12 +17,7 @@ public class MainLayout extends PolymerTemplate<TemplateModel> implements Router
     private Element content;
 
     public MainLayout() {
-        /*
-        ExampleTemplate template = new ExampleTemplate();
-        template.setValue("Template!!!");
 
-        setContent(template);
-        */
     }
 
     /**
