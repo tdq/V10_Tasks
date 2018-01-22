@@ -15,17 +15,22 @@
  */
 package com.tdq.tasks;
 
-import com.vaadin.server.VaadinServlet;
-import com.vaadin.server.VaadinServletConfiguration;
 
-import javax.servlet.annotation.WebServlet;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 /**
  * The main servlet for the application.
  * <p>
  * It is not mandatory to have the Servlet, since Flow will automatically register a Servlet to any app with at least one {@code @Route} to server root context.
  */
-@WebServlet(urlPatterns = "/*", name = "UIServlet", asyncSupported = true)
-@VaadinServletConfiguration(usingNewRouting = true, productionMode = false)
-public class Servlet extends VaadinServlet {
+@SpringBootApplication
+public class Servlet extends SpringBootServletInitializer {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Servlet.class, args);
+    }
 }

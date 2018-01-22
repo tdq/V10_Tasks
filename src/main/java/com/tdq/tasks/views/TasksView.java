@@ -1,12 +1,8 @@
 package com.tdq.tasks.views;
 
-import com.vaadin.flow.model.TemplateModel;
-import com.vaadin.router.Route;
-import com.vaadin.ui.Component;
-import com.vaadin.ui.Tag;
-import com.vaadin.ui.common.HasComponents;
-import com.vaadin.ui.common.HtmlImport;
-import com.vaadin.ui.polymertemplate.PolymerTemplate;
+import com.vaadin.flow.component.HasComponents;
+import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 
 import java.util.List;
 
@@ -14,6 +10,10 @@ import com.tdq.tasks.MainLayout;
 import com.tdq.tasks.components.TaskCard;
 import com.tdq.tasks.model.TaskDto;
 import com.tdq.tasks.model.TasksServiceMockupImpl;
+import com.vaadin.flow.templatemodel.TemplateModel;
+import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Tag;
 
 @Tag("tasks-view")
 @HtmlImport("views/tasks-view.html")
