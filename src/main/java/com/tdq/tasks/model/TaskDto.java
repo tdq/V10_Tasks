@@ -1,7 +1,5 @@
 package com.tdq.tasks.model;
 
-import java.lang.reflect.Type;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,9 +14,9 @@ public class TaskDto {
     private String date;
     private String name;
     private String description;
-    private List<String> options;
-    private Type type; 
-    
+    private List<OptionDto> options;
+    private Type type;
+
     public void setId(UUID id) {
         this.id = id;
     }
@@ -59,11 +57,11 @@ public class TaskDto {
         return description;
     }
 
-    public void setOptions(List<String> options) {
+    public void setOptions(List<OptionDto> options) {
         this.options = options;
     }
 
-    public List<String> getOptions() {
+    public List<OptionDto> getOptions() {
         return options;
     }
 
@@ -74,7 +72,7 @@ public class TaskDto {
     public Type getType() {
         return type;
     }
-    
+
     /**
      * Describes type of task
      */

@@ -1,5 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-textarea.html">
 <link rel="import" href="./component-styles.html">
 
 <dom-module id="task-card">
@@ -13,7 +14,7 @@
             }
 
             .task-description {
-
+                display: block;
             }
 
             .task-option {
@@ -29,7 +30,7 @@
             }
 
             .task-list-item {
-                
+                border: none;
             }
 
         </style>
@@ -37,24 +38,29 @@
         <div class="card">
             <div class="circle">[[author]]</div>
             <span>[[date]]</span>
-            <input class="task-name"  placeholder="Task name" value="{{name}}"></input>
+            <input class="task-name" id="taskName" placeholder="Task name" value="{{name::change}}" on-change="_updateName"></input>
+            <button on-click="_showText">Text</button>
+            <button on-click="_showList">List</button>
+            <button on-click="_showOptions">Options</button>
             <template is="dom-if" if="{{_equals(type, 'TEXT')}}">
-                <textarea class="task-description">[[desc]]</textarea>
+                <textarea placeholder="Task description" id="desc" class="task-description" on-input="_updateDescription" value="{{desc::blur}}"></textarea>
             </template>
 
             <template is="dom-if" if="{{_equals(type, 'OPTIONS')}}">
                 <template is="dom-repeat" items="[[options]]">
                     <div class="task-option">
                         <input type="checkbox"></input>
-                        <input type="text" value="{{item}}"></input>
+                        <input type="text" value="[[item.value]]" data-id$="[[item.id]]" on-keyup="_updateItem"></input>
                     </div>
                 </template>
             </template>
 
             <template is="dom-if" if="{{_equals(type, 'LIST')}}">
-                <template is="dom-repeat" items="[[options]]">
-                    <input class="task-list-item" type="text" value="{{item}}"></input>
-                </template>
+                <ul>
+                    <template is="dom-repeat" items="[[options]]">
+                        <li><input class="task-list-item" type="text" value="[[item.value]]" data-id$="[[item.id]]" on-keyup="_updateItem"></input></li>
+                    </template>
+                </ul>
             </template>
         </div>
     </template>
@@ -66,7 +72,62 @@
             _equals(type, value) {
                 return type === value;
             }
+
+            _updateDescription() {
+                //this.desc = this.shadowRoot.querySelector("#desc").value;
+            }
+
+            _updateName() {
+                console.log(this.$.taskName.value);
+            }
+
+            _showText() {
+                this.type = "TEXT";
+                console.log(this.type);
+            }
+
+            _showList() {
+                this.type = "LIST";
+                console.log(this.type);
+
+            }
+
+            _showOptions() {
+                this.type = "OPTIONS";
+                console.log(this.type);
+
+            }
+
+            _updateItem(item) {
+                var path = item.composedPath();
+
+                if(path == null || !(path instanceof Array) || path.length == 0) {
+                    return;
+                }
+
+                var inputItem = path[0];
+
+                for(var i = 0; i < this.options.length; ++i) {
+                    var option = this.options[i];
+
+                    if(option.id === parseInt(inputItem.dataset.id)) {
+                        option.value = inputItem.value;
+
+                        console.log("Option: ", option);
+                        this.set("options", this.options);
+                        //this.$server.updateOptions("Args test", 2145, option);
+                        break;
+                    }
+                }
+
+                console.log("Options: ", this.options);
+                console.log("Item key: ", item.key);
+                console.log("Input item: ", inputItem);
+                console.log("Option id: ", inputItem.dataset.id);
+                console.log("Option value: ", inputItem.value);
+            }
         }
+
         window.customElements.define(TaskCard.is, TaskCard);
     </script>
 </dom-module>

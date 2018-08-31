@@ -14,15 +14,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <!-- Dependencies -->
-        <vaadin.version>10.0.0.alpha12</vaadin.version>
-        <servlet.api.version>3.1.0</servlet.api.version>
-        <selenium.server.version>3.4.0</selenium.server.version>
-        <slf4j.version>1.7.25</slf4j.version>
-
-        <spring-boot.version>2.0.0.M7</spring-boot.version>
+        <vaadin.version>10.0.4</vaadin.version>
     </properties>
 
     <pluginRepositories>
@@ -32,23 +26,21 @@
         </pluginRepository>
     </pluginRepositories>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.2.RELEASE</version>
+    </parent>
+
     <repositories>
         <repository>
-            <id>vaadin-prereleases</id>
-            <url>https://maven.vaadin.com/vaadin-prereleases</url>
-        </repository>
-        <repository>
-            <id>vaadin-addons</id>
+            <id>Vaadin Directory</id>
             <url>http://maven.vaadin.com/vaadin-addons</url>
         </repository>
 
         <repository>
             <id>webjars</id>
             <url>https://dl.bintray.com/webjars/maven</url>
-        </repository>
-        <repository>
-            <id>spring-milestone</id>
-            <url>https://repo.spring.io/milestone/</url>
         </repository>
     </repositories>
 
@@ -57,9 +49,9 @@
             <dependency>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-bom</artifactId>
+                <version>${vaadin.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-                <version>${vaadin.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -67,64 +59,88 @@
     <dependencies>
         <dependency>
             <groupId>com.vaadin</groupId>
-            <artifactId>vaadin</artifactId>
-            <version>${vaadin.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-spring-boot-starter</artifactId>
+            <artifactId>vaadin-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <version>${spring-boot.version}</version>
             <optional>true</optional>
         </dependency>
 
         <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>polymer</artifactId>
+            <groupId>org.dizitart</groupId>
+            <artifactId>nitrite</artifactId>
+            <version>3.0.2</version>
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${servlet.api.version}</version>
-            <scope>provided</scope>
+            <groupId>org.webjars.bowergithub.polymerelements</groupId>
+            <artifactId>app-layout</artifactId>
+            <version>2.1.1</version>
         </dependency>
 
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.9.2</version>
+            <groupId>org.webjars.bowergithub.polymerelements</groupId>
+            <artifactId>iron-icon</artifactId>
+            <version>2.1.0</version>
         </dependency>
+
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.9.2</version>
+            <groupId>org.webjars.bowergithub.polymerelements</groupId>
+            <artifactId>iron-icons</artifactId>
+            <version>2.1.1</version>
         </dependency>
+
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.9.0</version>
+            <groupId>org.webjars.bowergithub.polymerelements</groupId>
+            <artifactId>app-storage</artifactId>
+            <version>2.1.2</version>
         </dependency>
+
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>org.webjars.bowergithub.polymerelements</groupId>
+            <artifactId>iron-flex-layout</artifactId>
+            <version>2.0.3</version>
         </dependency>
+
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>org.webjars.bowergithub.polymerelements</groupId>
+            <artifactId>iron-iconset-svg</artifactId>
+            <version>2.2.1</version>
         </dependency>
+
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>org.webjars.bowergithub.polymerelements</groupId>
+            <artifactId>paper-icon-button</artifactId>
+            <version>2.2.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.webjars.bowergithub.polymerelements</groupId>
+            <artifactId>paper-fab</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars.bowergithub.polymerelements</groupId>
+            <artifactId>paper-input</artifactId>
+            <version>2.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars.bowergithub.polymerelements</groupId>
+            <artifactId>paper-button</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars.bowergithub.polymerelements</groupId>
+            <artifactId>iron-selector</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -132,27 +148,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <executable>bower</executable>
-                    <arguments>
-                        <argument>install</argument>
-                    </arguments>
-                    <workingDirectory>${basedir}/src/main/webapp/frontend</workingDirectory>
-                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -172,6 +167,31 @@
                     <artifactId>flow-server-production-mode</artifactId>
                 </dependency>
             </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.vaadin</groupId>
+                        <artifactId>vaadin-maven-plugin</artifactId>
+                        <version>${vaadin.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>copy-production-files</goal>
+                                    <goal>package-for-production</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <jvmArguments>-Dvaadin.productionMode</jvmArguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>

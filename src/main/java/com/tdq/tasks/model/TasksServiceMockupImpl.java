@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * @author Nikolay Gorokhov
  */
 public class TasksServiceMockupImpl implements TasksService {
-   
+
     private final List<TaskDto> tasks = new LinkedList<>();
 
     public TasksServiceMockupImpl() {
@@ -25,7 +25,7 @@ public class TasksServiceMockupImpl implements TasksService {
         task1.setDate(LocalDateTime.now().minusDays(3).toString());
         task1.setName("Task 1");
         task1.setAuthor("Nikolay");
-        task1.setOptions(Arrays.asList(new String[]{"Option 1", "Option 2", "Option 3"}));
+        task1.setOptions(Arrays.asList(new OptionDto(1, "Option 1"), new OptionDto(2, "Option 2"), new OptionDto(3, "Option 3")));
         task1.setDescription("Description of task 1");
 
         tasks.add(task1);
