@@ -13,55 +13,17 @@
                 font-size: 16px;
             }
 
-            .task-description {
-                display: block;
-            }
-
-            .task-option {
-                display: block;
-            }
-
-            .task-option input[type="text"] {
-                border: none;
-            }
-
-            .task-option input[type="checkbox"]:checked ~ input[type="text"] {
-                text-decoration: line-through;
-            }
-
-            .task-list-item {
-                border: none;
-            }
-
         </style>
 
         <div class="card">
             <div class="circle">[[author]]</div>
             <span>[[date]]</span>
             <input class="task-name" id="taskName" placeholder="Task name" value="{{name::change}}" on-change="_updateName"></input>
-            <button on-click="_showText">Text</button>
-            <button on-click="_showList">List</button>
-            <button on-click="_showOptions">Options</button>
-            <template is="dom-if" if="{{_equals(type, 'TEXT')}}">
-                <textarea placeholder="Task description" id="desc" class="task-description" on-input="_updateDescription" value="{{desc::blur}}"></textarea>
-            </template>
-
-            <template is="dom-if" if="{{_equals(type, 'OPTIONS')}}">
-                <template is="dom-repeat" items="[[options]]">
-                    <div class="task-option">
-                        <input type="checkbox"></input>
-                        <input type="text" value="[[item.value]]" data-id$="[[item.id]]" on-keyup="_updateItem"></input>
-                    </div>
-                </template>
-            </template>
-
-            <template is="dom-if" if="{{_equals(type, 'LIST')}}">
-                <ul>
-                    <template is="dom-repeat" items="[[options]]">
-                        <li><input class="task-list-item" type="text" value="[[item.value]]" data-id$="[[item.id]]" on-keyup="_updateItem"></input></li>
-                    </template>
-                </ul>
-            </template>
+            <button on-click="showText">Text</button>
+            <button on-click="showList">List</button>
+            <button on-click="showOptions">Options</button>
+            <!--<tasks-list id = "tasksList" type = "{{type}}" options = "[[options]]" on-update="_updateItem"></tasks-list>-->
+            <slot></slot>
         </div>
     </template>
 
@@ -69,63 +31,30 @@
         class TaskCard extends Polymer.Element {
             static get is() { return 'task-card'; }
 
-            _equals(type, value) {
-                return type === value;
-            }
+            /*
+            _updateItem(event) {
+                const item = event.detail;
+                console.log("Event: ", event);
+                console.log("Item: ", event.detail);
 
-            _updateDescription() {
-                //this.desc = this.shadowRoot.querySelector("#desc").value;
-            }
+                for(let i = 0; i < this.options.length; ++i) {
+                    const option = this.options[i];
 
-            _updateName() {
-                console.log(this.$.taskName.value);
-            }
-
-            _showText() {
-                this.type = "TEXT";
-                console.log(this.type);
-            }
-
-            _showList() {
-                this.type = "LIST";
-                console.log(this.type);
-
-            }
-
-            _showOptions() {
-                this.type = "OPTIONS";
-                console.log(this.type);
-
-            }
-
-            _updateItem(item) {
-                var path = item.composedPath();
-
-                if(path == null || !(path instanceof Array) || path.length == 0) {
-                    return;
-                }
-
-                var inputItem = path[0];
-
-                for(var i = 0; i < this.options.length; ++i) {
-                    var option = this.options[i];
-
-                    if(option.id === parseInt(inputItem.dataset.id)) {
-                        option.value = inputItem.value;
+                    if(option.id === parseInt(item.id)) {
+                        option.value = item.value;
+                        option.checked = item.checked;
 
                         console.log("Option: ", option);
                         this.set("options", this.options);
-                        //this.$server.updateOptions("Args test", 2145, option);
+                        //this.$server.updateOption(option.id, option.checked, option.value);
                         break;
                     }
                 }
 
+                console.log("Item: ", item);
                 console.log("Options: ", this.options);
-                console.log("Item key: ", item.key);
-                console.log("Input item: ", inputItem);
-                console.log("Option id: ", inputItem.dataset.id);
-                console.log("Option value: ", inputItem.value);
             }
+            */
         }
 
         window.customElements.define(TaskCard.is, TaskCard);

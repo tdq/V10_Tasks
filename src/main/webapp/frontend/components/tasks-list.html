@@ -1,0 +1,105 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="tasks-list">
+    <template>
+        <style include = "shared-styles">
+            .task-description {
+                display: block;
+            }
+
+            .task-option {
+                display: block;
+            }
+
+            .task-option input[type="text"] {
+                border: none;
+            }
+
+            .task-option input[type="checkbox"]:checked ~ input[type="text"] {
+                text-decoration: line-through;
+            }
+
+            .task-list-item {
+                border: none;
+            }
+        </style>
+    <template is="dom-if" if="{{__equals(type, 'TEXT')}}">
+        <textarea placeholder="Task description" id="desc" class="task-description"></textarea>
+    </template>
+
+    <template is="dom-if" if="{{__equals(type, 'OPTIONS')}}">
+        <template is="dom-repeat" items="[[options]]">
+            <div class="task-option">
+                <input type="checkbox" on-change="__checkItem"/>
+                <input type="text" value="[[item.value]]" data-id$="[[item.id]]" on-keyup="__setItemCaption"/>
+            </div>
+        </template>
+    </template>
+
+    <template is="dom-if" if="{{__equals(type, 'LIST')}}">
+        <ul>
+            <template is="dom-repeat" items="[[options]]">
+                <li><input class="task-list-item" type="text" value="[[item.value]]" data-id$="[[item.id]]"
+                           on-keyup="__setItemCaption"/></li>
+            </template>
+        </ul>
+    </template>
+    </template>
+
+    <script>
+        class TasksList extends Polymer.Element {
+            static get is() { return 'tasks-list'; }
+
+            static get properties() {
+                return {
+                    type: String,
+                    options: Array
+                }
+            }
+
+            __equals(type, value) {
+                return type === value;
+            }
+
+            __checkItem(event) {
+                const item = event.model.item;
+                const checkBox = event.path[0];
+
+                item.checked = checkBox.checked;
+
+                this.__updateItem(item);
+            }
+
+            __setItemCaption(event) {
+                const item = event.model.item;
+                const inputElement = event.path[0];
+
+                item.value = inputElement.value;
+
+                if(event.key === "Enter") {
+                    __createOption();
+                } else if(event.key === "Backspace" || event.key === "Delete") {
+                    __deleteOption();
+                }
+
+                this.__updateItem(item);
+            }
+
+            __updateItem(item) {
+                this.$server.updateOption(item.id, item.checked, item.value);
+            }
+
+            __createOption() {
+                let options = this.options;
+                options.splice(event.model.index+1, 0, {checked: false, id: this.options.length, value: ""});
+                this.options = options;
+            }
+
+            __deleteOption() {
+
+            }
+        }
+
+        window.customElements.define(TasksList.is, TasksList);
+    </script>
+</dom-module>
